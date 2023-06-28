@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Persona;
 use App\Http\Controllers\MovileController;
 use App\Models\Movile;
+use App\Models\Automovile;
 use App\Models\Valla;
 use App\Models\comerciales;
+use App\Models\Letreroscomerciale;
 use App\Models\Inmobiliarios;
 use App\Models\Tipocolombina;
 use App\Models\Pendones;
@@ -78,6 +80,8 @@ class SolicitudeController extends Controller
     }
 
 
+
+
     public function store(Request $request)
     {
 
@@ -101,13 +105,8 @@ class SolicitudeController extends Controller
             $movile->tipo_solicitud = $request->tipo_solicitud;
             $movile->fecha_de_instalacion = $request->fecha_de_instalacion;
             $movile->numero_de_vehiculos = $request->numero_de_vehiculos;
-            $movile->placa = $request->placa;
-            $movile->tipo_de_vehiculo = $request->tipo_de_vehiculo;
-            $movile->Lateral_izquierdo = $request->Lateral_izquierdo;
-            $movile->Lateral_derecho = $request->Lateral_derecho;
-            $movile->Posterior = $request->Posterior;
-            $movile->Area_Total = $request->Area_Total;
             $movile->persona_id = $solicitude->id;
+
 
             $fotomontaje = $request->file('fotomontaje')->storeAs('documentos_puex', 'MONTAJE-' . $solicitude->id . '.pdf');
             $fotomontaje = 'storage/' . $fotomontaje;
@@ -144,10 +143,36 @@ class SolicitudeController extends Controller
                 //dump($mensaje);
 
             }
-            
+
             $movile->save();
+
+            
+            $numeroVehiculos = (int)$request->input('numero_de_vehiculos');
+            $datosVehiculos = $request->validate([
+        'placa.*' => 'required|string',
+        'tipo_de_vehiculo.*' => 'required|string',
+        'lateral_izquierdo.*' => 'required|numeric',
+        'lateral_derecho.*' => 'required|numeric',
+        'posterior.*' => 'required|numeric',
+        'area_total.*' => 'required|numeric',
+    ]);
     
+    for ($i = 0; $i < $numeroVehiculos; $i++) {
+        Automovile::create([
+            'placa' => $datosVehiculos['placa'][$i],
+            'tipo_de_vehiculo' => $datosVehiculos['tipo_de_vehiculo'][$i],
+            'lateral_izquierdo' => $datosVehiculos['lateral_izquierdo'][$i],
+            'lateral_derecho' => $datosVehiculos['lateral_derecho'][$i],
+            'posterior' => $datosVehiculos['posterior'][$i],
+            'area_total' => $datosVehiculos['area_total'][$i],
+            'movil_id' => $movile->id,
+
+        ]);
+    }
+
         }
+
+        
 
         if ($request->tipo == 'vallas') {
             
@@ -209,9 +234,6 @@ class SolicitudeController extends Controller
             $comerciales->fecha_de_instalacion = $request->fecha_de_instalacion;
             $comerciales->direccion = $request->direccion;
             $comerciales->numero_de_elementos = $request->numero_de_elementos;
-            $comerciales->Ancho = $request->Ancho;
-            $comerciales->Alto = $request->Alto;
-            $comerciales->Area_total = $request->Area_total;
             $comerciales->Ancho_fachada = $request->Ancho_fachada;
             $comerciales->Alto_fachada = $request->Alto_fachada;
             $comerciales->Area_Total_fachada = $request->Area_Total_fachada;
@@ -245,6 +267,24 @@ class SolicitudeController extends Controller
             
 
             $comerciales->save();
+            $numeroelementos = (int)$request->input('numero_de_elementos');
+            $datoselementos = $request->validate([
+        'ancho.*' => 'required|numeric',
+        'alto.*' => 'required|numeric',
+        'area_total.*' => 'required|numeric',
+    ]);
+    
+    for ($i = 0; $i < $numeroelementos; $i++) {
+        Letreroscomerciale::create([
+            
+            'Ancho' => $datoselementos['ancho'][$i],
+            'Alto' => $datoselementos['alto'][$i],
+            'Area_total' => $datoselementos['area_total'][$i],
+            'comercial_id' => $comerciales->id,
+
+        ]);
+    }
+
 
 
             
@@ -505,6 +545,11 @@ class SolicitudeController extends Controller
         }
 
         if ($request->tipo == "Aerea") {
+
+            $request->validate([
+                'tipo_solicitud'=>['required'],
+                'fecha_de_instalacion'=>['required'],
+            ]);
             $aerea = new Aerea;
             $aerea->tipo_solicitud = $request->tipo_solicitud;
             $aerea->fecha_de_instalacion = $request->fecha_de_instalacion;

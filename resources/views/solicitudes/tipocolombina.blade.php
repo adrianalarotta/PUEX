@@ -8,7 +8,7 @@
         }
     </style>
 
-    <form action="{{ route('solicitudes.store') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('solicitudes.store') }}" id="myForm" enctype="multipart/form-data" method="POST">
         @csrf
         <x-layouts.registro>
         </x-layouts.registro>
@@ -39,32 +39,24 @@
 
         </div>
 
-        <script>
-            function modalidadpublicidad() {
-                var x = document.getElementById("modalidadpublicidad").value;
-                if (x == "movil") {
-
-                } else {
-
-                }
-            }
-        </script>
 
         <div class="row">
             <div class="col-sm-4 mt-4" style="padding-left:10%">
                 <label for="" class="">Tipo Solicitud<span aria-required="true">*</span></label>
-                <select class="form-control" id="tiposolicitud" name="tipo_solicitud" onchange="mostrartiposolicitud()">
-                    <option disabled selected>Seleccione</option>
+                <select class="form-control" id="tipo_solicitud" name="tipo_solicitud" onchange="mostrartiposolicitud()">
+                    <option value="">Seleccione</option>
                     <option value="Primera Vez">Primera Vez</option>
                     <option value="Renovacion">Renovación</option>
                 </select>
+                <p class="error" id="tipo_solicitudError"></p>
             </div>
 
             <div class="col-sm-3" style="padding-left:3%;" id="razon-social-div">
                 <div class="entradas-de-texto-govco">
                     <label for="razon-social-id">Fecha de instalación*</label>
-                    <input type="date" id="razon-social-id" name="fecha_de_instalacion" placeholder="Ejemplo: Campo de texto" />
-                </div>
+                    <input type="date" id="fecha_de_instalacion" name="fecha_de_instalacion" placeholder="Ejemplo: Campo de texto" />
+                    <p class="error" id="fecha_de_instalacionError"></p>
+                  </div>
             </div>
 
 
@@ -72,11 +64,12 @@
         <div class="row">
             <div class="col-sm-4" style="padding-left:10%;">
                 <div class="entradas-de-texto-govco">
-                    <label for="razon-social-id">Direccion
+                    <label for="razon-social-id">direccion
                     </label>
-                    <input class=form-control type="string" name="direccion"
+                    <input class=form-control type="string" id="direccion2" name="direccion2"
                         placeholder="Ejemplo: Campo de texto" />
                 </div>
+                <p class="error" id="direccion2Error"></p>
             </div>
             <div class="col-sm-3" style="padding-left:3%;" id="numvehiculos">
                 <div class="entradas-de-texto-govco">
@@ -92,14 +85,16 @@
     <div class="col-sm-3" style="padding-left:10%">
         <div class="entradas-de-texto-govco">
             <label for="razon-social-id">Ancho(m)*</label>
-            <input class="form-control" name="Ancho" type="number" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
+            <input class="form-control" id="Ancho" name="Ancho" type="number" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
+            <p class="error" id="AnchoError"></p>
         </div>
     </div>
 
     <div class="col-sm-2" style="padding-left:3%;">
         <div class="entradas-de-texto-govco">
             <label for="razon-social-id">Alto(mts^2):</label>
-            <input type="number" name="Alto" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
+            <input type="number" id="Alto" name="Alto" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
+            <p class="error" id="AltoError"></p>
         </div>
     </div>
 
@@ -135,13 +130,14 @@
     <div class="container-carga-de-archivo-govco">
         <div class="loader-carga-de-archivo-govco">
           <div class="all-input-carga-de-archivo-govco">
-            <input type="file" name="fotomontaje" id="inputFile" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
+            <input type="file" name="fotomontaje" id="fotomontaje" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
             <label for="inputFile" class="label-carga-de-archivo-govco">Foto montaje o plano digitalizado*</label>
             <label for="inputFile" class="container-input-carga-de-archivo-govco">
               <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
               <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
             </label>
             <span class="text-validation-carga-de-archivo-govco">Cualquier tipo de archivo. Peso máximo: 2 MB</span>
+            <p class="error" id="fotomontajeError"></p>
           </div>
           <div class="load-button-carga-de-archivo-govco">
             <div class="load-carga-de-archivo-govco">
@@ -166,13 +162,14 @@
     <div class="container-carga-de-archivo-govco">
         <div class="loader-carga-de-archivo-govco">
           <div class="all-input-carga-de-archivo-govco">
-            <input type="file" name="Camara_de_comercio" id="inputFile" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
+            <input type="file" name="Camara_de_comercio" id="Camara_de_comercio" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
             <label for="inputFile" class="label-carga-de-archivo-govco">Camará de comercio ó Registro único tributario - RUT*</label>
             <label for="inputFile" class="container-input-carga-de-archivo-govco">
               <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
               <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
             </label>
             <span class="text-validation-carga-de-archivo-govco">Cualquier tipo de archivo. Peso máximo: 2 MB</span>
+            <p class="error" id="Camara_de_comercioError"></p>
           </div>
           <div class="load-button-carga-de-archivo-govco">
             <div class="load-carga-de-archivo-govco">
@@ -198,13 +195,14 @@
     <div class="container-carga-de-archivo-govco">
         <div class="loader-carga-de-archivo-govco">
           <div class="all-input-carga-de-archivo-govco">
-            <input type="file" name="Carta_escrita_de_solicitud" id="inputFile" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
+            <input type="file" name="Carta_escrita_de_solicitud" id="Carta_escrita_de_solicitud" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
             <label for="inputFile" class="label-carga-de-archivo-govco">Carta escrita de solicitud*</label>
             <label for="inputFile" class="container-input-carga-de-archivo-govco">
               <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
               <span class="file-name-carga-de-archivo-govco">Sin archivo seleccionado</span>
             </label>
             <span class="text-validation-carga-de-archivo-govco">Cualquier tipo de archivo. Peso máximo: 2 MB</span>
+           <p class="error" id="Carta_escrita_de_solicitudError"></p>
           </div>
           <div class="load-button-carga-de-archivo-govco">
             <div class="load-carga-de-archivo-govco">
@@ -231,7 +229,7 @@
         <div class="container-carga-de-archivo-govco">
             <div class="loader-carga-de-archivo-govco" style="flex">
               <div class="all-input-carga-de-archivo-govco">
-                <input type="file" name="permiso_anterior" id="inputFile" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
+                <input type="file" name="permiso_anterior" id="permiso_anterior" class="input-carga-de-archivo-govco active" data-error="0" data-action="uploadFile" data-action-delete="deleteFile" multiple/>
                 <label for="inputFile" class="label-carga-de-archivo-govco">Resolución de vigencia, permiso anterior*</label>
                 <label for="inputFile" class="container-input-carga-de-archivo-govco">
                   <span class="button-file-carga-de-archivo-govco">Seleccionar archivo</span>
@@ -264,7 +262,7 @@
     </x-layouts.capcha>
     <div class="row" style="padding-left:11%; padding-top:1%" >
     
-    <button type="submit" class="btn-govco outline-btn-govco" style="width: 165px; height: 42px;">Enviar Solicitud</button>
+    <button type="submit" id="submitButton" class="btn-govco outline-btn-govco" style="width: 165px; height: 42px;">Enviar Solicitud</button>
 
     </div>
     
@@ -274,7 +272,7 @@
     <script>
         function mostrartiposolicitud() {
 
-            var x = document.getElementById("tiposolicitud").value;
+            var x = document.getElementById("tipo_solicitud").value;
             if (x == "Renovacion") {
                 document.getElementById("resolucionanterior1").style.display = "block";
             }
@@ -282,6 +280,69 @@
                 document.getElementById("resolucionanterior1").style.display = "none";
             }
         }
+    </script>
+
+
+   <x-layouts.validaciondatosbasicos>
+    </x-layouts.validaciondatosbasicos>
+
+    <script>
+    document.getElementById('submitButton').addEventListener('click', function(e) {
+        e.preventDefault(); // Evita enviar el formulario al hacer clic
+
+        var direccion2 = document.getElementById('direccion2');
+        var Ancho = document.getElementById('Ancho');
+        var Alto = document.getElementById('Alto');
+      
+
+       var direccion2Error = document.getElementById('direccion2Error');
+        var AnchoError = document.getElementById('AnchoError');
+        var AltoError = document.getElementById('AltoError');
+      
+
+       
+        direccion2.classList.remove('error-border');
+        Ancho.classList.remove('error-border');
+        Alto.classList.remove('error-border');
+       
+
+       
+        AnchoError.innerText = "";
+        AltoError.innerText = "";
+        direccion2Error.innerText = "";
+       
+
+
+
+        var isValid = true;
+
+        if (direccion2.value === "") {
+            direccion2.classList.add('error-border');
+            direccion2Error.innerText = "Este campo es requerido.";
+            isValid = false;
+        }
+
+        if (Ancho.value === "") {
+            Ancho.classList.add('error-border');
+            AnchoError.innerText = "Este campo es requerido.";
+            isValid = false;
+        }
+
+
+        if (Alto.value === "") {
+            Alto.classList.add('error-border');
+            AltoError.innerText = "Este campo es requerido.";
+            isValid = false;
+        }
+
+        
+
+
+        if (isValid) {
+            // Si todos los campos son válidos, enviar el formulario
+            document.getElementById('myForm').submit();
+        }
+    });
     </script>
 
 </x-layouts.app>

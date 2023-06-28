@@ -17,12 +17,6 @@ return new class extends Migration
                 $table->enum('tipo_solicitud', ['Primera Vez', 'Renovación']);
                 $table->date('fecha_de_instalacion');
                 $table->integer('numero_de_vehiculos');
-                $table->string('Placa');
-                $table->string('tipo_de_vehiculo');
-                $table->integer('Lateral_izquierdo');
-                $table->integer('Lateral_derecho');
-                $table->integer('Posterior');
-                $table->integer('Area_Total');
                 $table->unsignedBigInteger('persona_id');
                 $table->string('fotomontaje');
                 $table->string('Camara_de_comercio');

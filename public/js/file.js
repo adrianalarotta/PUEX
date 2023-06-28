@@ -206,10 +206,13 @@ window.addEventListener("load", function(event) {
     const containerNameFile = container.querySelector('.file-name-carga-de-archivo-govco');
     containerNameFile.innerHTML = fileName ? fileName : 'Sin archivo seleccionado';
   }
+
+
+
+
+
+
   
-  function enableDisableFileUploadButton(element, value) {
-    element.disabled = value;
-  }
   
   async function clickButtonFile() {
     const parentButton = this.parentNode;
@@ -218,8 +221,7 @@ window.addEventListener("load", function(event) {
     const idInput = inputFile.id;
     const containerLoader = parent.querySelector('.load-carga-de-archivo-govco');
     activateContainerLoader(containerLoader, true);
-    enableDisableFileUploadButton(this, true);
-  
+    
     if (inputFile.value) {
       const containerParent = parent.nextElementSibling;
       const container = containerParent.querySelector('.attached-files-carga-de-archivo-govco');

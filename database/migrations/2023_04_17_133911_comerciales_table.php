@@ -17,9 +17,6 @@ return new class extends Migration
             $table->enum('tipo_solicitud', ['Primera Vez', 'Renovación']);
             $table->date('fecha_de_instalacion');
             $table->integer('numero_de_elementos');
-            $table->integer('Ancho');
-            $table->integer('Alto');
-            $table->integer('Area_Total');
             $table->integer('Ancho_fachada');
             $table->integer('Alto_fachada');
             $table->integer('Area_Total_fachada');
