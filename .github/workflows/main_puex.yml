@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'PUEX'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9D495827140342F1B5886F73E910193A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4E3B7574232142509AEC0C03CD294065 }}
           package: .
