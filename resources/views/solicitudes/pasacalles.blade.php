@@ -98,7 +98,7 @@
     <div class="col-sm-2" style="padding-left:1%;">
         <div class="entradas-de-texto-govco">
             <label for="area-total-id">Area total(mts^2):</label>
-            <input class="form-control" type="text" name="Area_Total" id="area-total-id" placeholder="Ejemplo: Campo de texto" readonly />
+            <input class="form-control" type="text" name="Area_total" id="area-total-id" placeholder="Ejemplo: Campo de texto" readonly />
         </div>
     </div>
     <div class="col-sm-2" style="padding-left:1%;">

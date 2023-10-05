@@ -12,26 +12,77 @@ use App\Models\Valla;
 use App\Models\comerciales;
 use App\Models\Letreroscomerciale;
 use App\Models\Inmobiliarios;
+use App\Models\ElementoInmobiliario;
 use App\Models\Tipocolombina;
 use App\Models\Pendones;
 use App\Models\Murales;
 use App\Models\Pasacalles;
 use App\Models\Aerea;
+use App\Models\Comentario;
+use Illuminate\Database\Eloquent\Model;
 
 use App\Http\Controllers\vallaController;
+use App\Models\Elementotipocolombina;
 
 class SolicitudeController extends Controller
 {
-    //
+    protected $table = 'solicitudes';
+    protected $primaryKey = 'id';
+
     public function index()
     {
         $solicitudes = Solicitude::all();
         return view('solicitudes.index', compact('solicitudes'));
     }
 
+    public function guardarComentario(Request $request)
+    {
+        $request->validate([
+            'contenido' => 'required|min:10', // Validación para asegurarse de que el comentario tenga al menos 10 caracteres.
+        ]);
+
+        $comentario = new Comentario;
+        $comentario->contenido = $request->input('contenido');
+        $comentario->save();
+
+        return response()->json(['mensaje' => 'Comentario guardado con éxito']);
+    }
+
     public function registro()
     {
         return view('solicitudes.registro');
+    }
+
+    public function consulta(Request $request)
+{
+    
+    $numeroRadicado = $request->input('numeroRadicado');
+    
+    // Obtener el último dígito del número de radicado
+    $ultimoDigito = ($numeroRadicado);
+    $ultimoDigito = (int) $ultimoDigito;
+
+    // Realizar la consulta en la tabla "solicitudes"
+    $solicitude = solicitude::where('id', $ultimoDigito)->first();
+    $mensaje = null;
+    if ($solicitude) {
+        // Se encontró una coincidencia
+        return view('solicitudes.consulta', ['mensaje' => 'Su solicitud aún se encuentra en proceso.']);
+    }
+    if ($ultimoDigito==0) {
+        // Se encontró una coincidencia
+        return view('solicitudes.consulta', ['mensaje' => '']);
+    } else {
+        // No se encontró ninguna coincidencia
+        return view('solicitudes.consulta', ['mensaje' => 'El número de radicado ingresado no existe.']);
+    }
+    $ultimoDigito=0;
+}
+
+
+    public function definiciones()
+    {
+        return view('solicitudes.definiciones');
     }
 
     public function movil()
@@ -284,10 +335,7 @@ class SolicitudeController extends Controller
 
         ]);
     }
-
-
-
-            
+ 
         }
 
         if ($request->tipo == 'inmobiliarios') {
@@ -300,29 +348,7 @@ class SolicitudeController extends Controller
             $inmobiliarios->Largo_predio = $request->Largo_predio;
             $inmobiliarios->Ancho_predio = $request->Ancho_predio;
             $inmobiliarios->Area_total_predio = $request->Area_total_predio;
-            
-            
-                    $inmobiliarios->numero_de_elemento_valla = $request->numero_de_elemento_valla;
-                    $inmobiliarios->Alto_valla = $request->Alto_valla;
-                    $inmobiliarios->Ancho_valla = $request->Ancho_valla;
-                    $inmobiliarios->Area_total_valla = $request->Area_total_valla;
-                    
-                    $inmobiliarios->numero_de_elementos_aviso = $request->numero_de_elementos_aviso;
-                    $inmobiliarios->alto_aviso = $request->Alto_aviso;
-                    $inmobiliarios->ancho_aviso = $request->Ancho_aviso;
-                    $inmobiliarios->area_total_aviso = $request->Area_total_aviso;
-                   
-                    $inmobiliarios->numero_de_encerramiento = $request->numero_de_encerramiento;
-                    $inmobiliarios->alto_encerramiento = $request->Alto_encerramiento;
-                    $inmobiliarios->ancho_encerramiento = $request->Ancho_encerramiento;
-                    $inmobiliarios->area_total_encerramiento = $request->Area_Total_encerramiento;
-                    
-                    $inmobiliarios->otros = $request->otro;
-                    $inmobiliarios->numero_de_elementos_otro = $request->numero_de_elementos_otro;
-                    $inmobiliarios->Alto_otro = $request->Alto_otro;
-                    $inmobiliarios->ancho_otro = $request->Ancho_otro;
-                    $inmobiliarios->area_total_otro = $request->Area_Total_otro;
-                    
+
 
 
             $inmobiliarios->persona_id = $solicitude->id;
@@ -360,7 +386,38 @@ class SolicitudeController extends Controller
 
             }
             $inmobiliarios->save();
-            
+           
+
+            $datosElementos = $request->validate([
+                'nombre' => 'required|array',
+                'nombre.*' => 'string',
+                'numero_de_elementos' => 'required|array',
+                'numero_de_elementos.*' => 'numeric',
+                'ancho' => 'required|array',
+                'ancho.*' => 'numeric',
+                'alto' => 'required|array',
+                'alto.*' => 'numeric',
+                'area_total' => 'required|array',
+                'area_total.*' => 'numeric',
+                'inmobiliarios_id' => 'required|numeric',
+            ]);
+    
+            $numeroElementos = count($datosElementos['nombre']);
+    
+            for ($i = 0; $i < $numeroElementos; $i++) {
+                if (!empty($datosElementos['nombre'][$i])) {
+                    ElementoInmobiliario::create([
+                        'nombre' => $datosElementos['nombre'][$i],
+                        'numero_de_elementos' => $datosElementos['numero_de_elementos'][$i],
+                        'ancho' => $datosElementos['ancho'][$i],
+                        'alto' => $datosElementos['alto'][$i],
+                        'area_total' => $datosElementos['area_total'][$i],
+                        'inmobiliarios_id' => $datosElementos['inmobiliarios_id'],
+                    ]);
+                }
+            }
+    
+            return response()->json(['message' => 'Elementos inmobiliarios guardados correctamente']);
         }
 
 
@@ -370,9 +427,6 @@ class SolicitudeController extends Controller
             $tipocolombina->fecha_de_instalacion = $request->fecha_de_instalacion;
             $tipocolombina->direccion = $request->direccion;
             $tipocolombina->numero_de_elementos = $request->numero_de_elementos;
-            $tipocolombina->Ancho = $request->Ancho;
-            $tipocolombina->Alto = $request->Alto;
-            $tipocolombina->Area_Total = $request->Area_Total;
             $tipocolombina->persona_id = $solicitude->id;
 
             $fotomontaje = $request->file('fotomontaje')->storeAs('documentos_puex', 'MONTAJE-' . $solicitude->id . '.pdf');
@@ -403,6 +457,25 @@ class SolicitudeController extends Controller
             
 
             $tipocolombina->save();
+
+            $numeroelementos = (int)$request->input('numero_de_elementos');
+            $datoselementos = $request->validate([
+        'ancho.*' => 'required|numeric',
+        'alto.*' => 'required|numeric',
+        'area_total.*' => 'required|numeric',
+
+    ]);
+    
+    for ($i = 0; $i < $numeroelementos; $i++) {
+        Elementotipocolombina::create([
+            
+            'ancho' => $datoselementos['ancho'][$i],
+            'alto' => $datoselementos['alto'][$i],
+            'area_total' => $datoselementos['area_total'][$i],
+            'tipocolombina_id' => $tipocolombina->id,
+
+        ]);
+    }
 
 
             
@@ -589,6 +662,7 @@ class SolicitudeController extends Controller
             $aerea->save();
             
         }
-        return view('solicitudes.guardada', ['radicado' => $solicitude->id]);;
+        return view('solicitudes.guardada', ['radicado' => $solicitude->id]);
+
     }
 }

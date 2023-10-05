@@ -7,11 +7,15 @@
         <link href="{{ asset('css/informacion.css') }}" rel="stylesheet">
         <link href="{{ asset('js/informacion.js') }}" rel="stylesheet">
         <link rel="stylesheet" href="css/linea_de_avance.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
         <div class="row m-5">
             <div id="para-mirar" class="barra-accesibilidad-letra">
 
                 <div style="text-align-center;">
-                    <div class="col-md-12" style="padding-left:5.8%">
+                    <div class="col-md-6" style="padding-right:15%">
                         <img src="https://www.bucaramanga.gov.co/wp-content/uploads/2021/08/escudo-bucaramanga.png"
                             width="70" height="60"style="float:left">
 
@@ -23,6 +27,20 @@
             </div>
         </div>
 
+        <style>
+            /* Estilos para el modo normal */
+.recuadro {
+    background-color: white; /* Color de fondo original */
+    color: black; /* Color de texto original */
+}
+
+/* Estilos para el modo de alto contraste */
+.contraste-activo .recuadro {
+    background-color: black; /* Cambiar al color de fondo de alto contraste */
+    color: white; /* Cambiar al color de texto de alto contraste */
+}
+
+        </style>
     </head>
 
     <body>
@@ -33,7 +51,7 @@
                     <nav aria-label="Miga de pan predeterminada de tres niveles">
                         <ul class="breadcrumb-govco">
                             <li class="breadcrumb-item-govco"><a href="#">Inicio</a></li>
-                            <li class="breadcrumb-item-govco"><a href="#">Miga sección anterior</a></li>
+                            <li class="breadcrumb-item-govco"><a href="#">Sección anterior</a></li>
                             <li class="breadcrumb-item-govco active" aria-current="page">Sección actual</li>
                         </ul>
                     </nav>
@@ -113,21 +131,34 @@
                                         <span class="modal-close-govco govco-times"></span>
                                     </a>
                                 </div>
-                                <div class="modal-body modal-body-govco">
-                                    <h3 class="modal-subtitle-govco">Importante</h3>
-                                    <div id="itemLineaAvance11"
-                                        class="body-linea-avance-govco active-linea-avance-govco"
-                                        data-la-parent="#lineaAvance1">
-                                        <p style="text-align: justify">El presente proceso, tiene como finalidad la
-                                            legalización de toda la Publicidad Exterior visual, Comercial e
-                                            Institucional (entidades públicas), que pretendan la exhibición de la misma,
-                                            en sus diferentes modalidades y etapas.
-                                            Conforme al proceso se recomienda seguir las instrucciones y cargar la
-                                            documentación completa. Para alguna orientación adicional, comunicarse al
-                                            número: 6337000 ext 362.</p>
-                                    </div>
-                                </div>
 
+                                <div class="recuadro recuadro-contraste">
+                                    <div class="modal-body modal-body-govco">
+                                        <h3 class="modal-subtitle-govco">Importante</h3>
+                                        <div id="itemLineaAvance11"
+                                            class="body-linea-avance-govco active-linea-avance-govco"
+                                            data-la-parent="#lineaAvance1">
+                                    
+                                            <div class="recuadro">
+                                            
+                                            <p class="texto-original" style="text-align: justify">El presente proceso, tiene como finalidad la
+                                                legalización de toda la Publicidad Exterior visual, Comercial e
+                                                Institucional (entidades públicas), que pretendan la exhibición de la misma,
+                                                en sus diferentes modalidades y etapas.
+                                                Conforme al proceso se recomienda seguir las instrucciones y cargar la
+                                                documentación completa. Para alguna orientación adicional, comunicarse al
+                                                número: 6337000 ext 362.
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </p>
+                                        </div>
+                                        </div>
+                                    </div>
+    
+                                </div>
+                                
+                                
                             </div>
                         </div>
                     </div>
@@ -136,7 +167,7 @@
             </div>
             <div class="col-md-4">
                 <div class="aservice-container">
-                    <a href="javascript:void(0)" tabindex="-1" class="aservice-spacing" id="aserviceTutorial">
+                    <a href="{{ route('solicitudes.definiciones') }}" tabindex="-1" class="aservice-spacing" id="aserviceTutorial">
                         <div class="aservice" tabindex="0">
                             <div class="aservice-item link-card">
                                 <p class="aservice-text-govco aservice-link-govco aservice-spacing-card">
@@ -145,6 +176,7 @@
                             </div>
                         </div>
                     </a>
+                    
 
 
                     <div class="aservice aservice-spacing" id="aserviceConsulta">
@@ -162,13 +194,13 @@
                                     <div class="row aservice-row-govco">
                                         <span class="mail-icon-govco"></span>
                                         <div class="aservice-mailto-container">
-                                            <a href="mailto:soporteccc@mintic.gov.co"
+                                            <a href="contactenos@bucaramanga.gov.co"
                                                 class="aservice-mailto-govco">Enviar correo electrónico</a>
                                         </div>
                                     </div>
                                     <div class="row aservice-row-govco aservice-row-center-govco">
                                         <span class="headset-icon-govco"></span>
-                                        <p class="aservice-number-govco">(601) 123-45-78<br>01-8000-456-768</p>
+                                        <p class="aservice-number-govco">+57 (607) 633 70 00<br>+57 (607) 652 55 55</p>
                                     </div>
                                 </div>
                             </div>
@@ -185,29 +217,14 @@
                             </h2>
                             <div id="collapseTwo" class="aservice-collapse collapse" aria-labelledby="headingTwo"
                                 data-bs-parent="#aserviceExampleTwo">
-                                <div class="aservice-body aservice-body-two">
-                                    <ul class="aservice-item-menu-ul">
-                                        <li class="aservice-item-menu-li">
-                                            <a class="dropdown-item aservice-item-govco" id="easy_item"
-                                                href="javascript:void(0)"
-                                                onclick="selectedOption('easy_item', 'hard_item')">
-                                                <div class="aservice-item-icon-govco">
-                                                    <span class="easy-icon-govco"></span>
-                                                </div>
-                                                <span>fácil</span>
-                                            </a>
-                                        </li>
-                                        <li class="aservice-item-menu-li">
-                                            <a class="dropdown-item aservice-item-govco" id="hard_item"
-                                                href="javascript:void(0)"
-                                                onclick="selectedOption('hard_item', 'easy_item')">
-                                                <div class="aservice-item-icon-govco">
-                                                    <span class="hard-icon-govco"></span>
-                                                </div>
-                                                <span>difícil</span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="aservice-body">
+                                    <div class="aservice-collapse" id="commentsSection">
+                                        <div class="aservice-body aservice-body-two">
+                                            <textarea class="aservice-comentarios-textarea" id="aservice-comentarios-textarea" placeholder="Queremos conocer tu experiencia, sugerencias y consejos..."></textarea>
+                                            <p class="aservice-comentarios-alert" id="aservice-comentarios-alert" style="display: none;">* Para poder enviar su comentario, este debe contener, al menos, 10 caracteres.</p>
+                                            <button type="button" class="btn btn-primary btn-service-govco btn-contorno" onclick="enviarComentarios()">Envía tus comentarios</button>
+                                        </div>
+                                    </div>
                                     <div class="alert aservice-alerta-govco aservice-alerta-success-govco asuccess"
                                         id="alerta-service" style="display: none;" role="alert">
                                         <p class="aservice-alerta-content-text">
@@ -215,45 +232,58 @@
                                             de nuestro país.
                                         </p>
                                     </div>
-                                    <div class="container-button" id="comentarios1-button" style="display: none;">
-                                        <button type="button" class="btn btn-primary btn-service-govco btn-contorno"
-                                            onclick="verComentarios()">Envía tus comentarios</button>
-                                    </div>
-                                    <div class="aservice-comentarios" id="aservice-comentarios"
-                                        style="display: none;">
-                                        <p class="aservice-comentarios-fixed-text">Escribe tus comentarios:</p>
-                                        <textarea class="aservice-comentarios-textarea" id="aservice-comentarios-textarea"
-                                            placeholder="Queremos conocer tu experiencia, sugerencias y consejos..." onkeypress="contadorTextArea()"
-                                            aria-label="area de comentarios"></textarea>
-                                        <p class="aservice-comentarios-alert" id="aservice-comentarios-alert"
-                                            style="display: none;">
-                                            * Para poder enviar su comentario, este debe contener, al menos, 10
-                                            caracteres.
-                                        </p>
-                                    </div>
-                                    <div class="container-button" id="comentarios2-button" style="display: none;">
-                                        <button type="button" id="comentarios2-button-item" disabled="true"
-                                            class="btn btn-primary btn-service-govco btn-contorno"
-                                            onclick="enviarComentarios()">Envía tus comentarios</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
+                    <script>
+                       function enviarComentarios() {
+    // Obtén el contenido del comentario desde el textarea
+    const comentario = document.getElementById('aservice-comentarios-textarea').value;
+
+    // Verifica que el comentario tenga al menos 10 caracteres
+    if (comentario.length < 10) {
+        alert('El comentario debe tener al menos 10 caracteres.');
+        return;
+    }
+
+    // Objeto con los datos del comentario
+    const comentarioData = {
+        contenido: comentario
+    };
+
+    // Realiza una solicitud POST al servidor para guardar el comentario
+    fetch('/guardar-comentario', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(comentarioData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Maneja la respuesta del servidor
+        alert(data.mensaje); // Muestra una alerta con el mensaje de respuesta
+        document.getElementById('aservice-comentarios-textarea').value = ''; // Limpia el textarea
+    })
+    .catch(error => {
+        console.error('Error al guardar el comentario:', error);
+    });
+}
+
+
+                    </script>
+                    
+                   
+                    
                 </div>
 
             </div>
         </div>
 
         </div>
-
-
-
-
-
-
-
-
 
         <!-- Tarjeta tipo módulo -->
         <div class="col-md-6 mr-auto">
@@ -268,7 +298,7 @@
                             <p>Inicie el trámite de legalización para exposición de publicidad visual exterior.</p>
                         </div>
                     </a>
-                    <a class="module-tarjeta-govco" href="" title="descripción donde redirige el enlace">
+                    <a class="module-tarjeta-govco" href="{{ route('solicitudes.consulta') }}" title="descripción donde redirige el enlace">
                         <div class="header-tarjeta-govco">
                             <h5>Consultar mi trámite</h5>
                         </div>
@@ -285,6 +315,6 @@
         </div>
 
 
-
+        
 
 </x-layouts.app>

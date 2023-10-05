@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aerea', function (Blueprint $table) {
+        Schema::create('aereas', function (Blueprint $table) {
             $table->id();
             $table->enum('tipo_solicitud', ['Primera Vez', 'Renovación']);
             $table->string('direccion');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('fotomontaje');
             $table->string('Camara_de_comercio');
             $table->string('Carta_escrita_de_solicitud');
-            $table->string('permiso_anterior');
+            $table->string('permiso_anterior')->nullable();
             $table->foreign('persona_id')->references('id')->on('solicitudes');
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aerea');
+        Schema::dropIfExists('aereas');
     }
 };

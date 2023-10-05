@@ -84,7 +84,7 @@
     <div class="col-sm-2" style="padding-left:1%;">
         <div class="entradas-de-texto-govco">
             <label for="area-total-id">Area total(mts^2):</label>
-            <input class="form-control" type="text" name="Area_Total" id="Area_Total" placeholder="Ejemplo: Campo de texto" readonly />
+            <input class="form-control" type="text" name="Area_total" id="Area_total" placeholder="Ejemplo: Campo de texto" readonly />
         </div>
     </div>
 </div>
@@ -99,13 +99,13 @@
         // Verificar si los valores son números válidos
         if (isNaN(ancho) || isNaN(alto)) {
                 // Al menos uno de los valores no es un número válido
-                document.getElementById("Area_Total").value = "Valores inválidos";
+                document.getElementById("Area_total").value = "Valores inválidos";
             } else {
                 // Calcular el área total según el número de caras seleccionado
                 var areaTotal = areaTotal = ancho * alto;
 
                 // Asignar el resultado al campo de texto del área total
-                document.getElementById("Area_Total").value = areaTotal;
+                document.getElementById("Area_total").value = areaTotal;
             }
 
 

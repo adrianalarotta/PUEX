@@ -49,6 +49,55 @@ document.getElementById('submitButton').addEventListener('click', function(e) {
     var Camara_de_comercioError = document.getElementById('Camara_de_comercioError');
     var Carta_escrita_de_solicitudError = document.getElementById('Carta_escrita_de_solicitudError');
 
+    // Obtener referencias a los elementos de los checkbox
+const tratamientoDatosCheckbox = document.getElementById('AT00');
+const aceptoTerminosCheckbox = document.getElementById('AT01');
+const confirmoMayorEdadCheckbox = document.getElementById('AT02');
+const confirmoPoliticaCheckbox = document.getElementById('AT03');
+
+// Obtener las etiquetas de error para los checkbox
+const tratamientoDatosError = document.getElementById('tratamientoDatosError');
+const aceptoTerminosError = document.getElementById('aceptoTerminosError');
+const confirmoMayorEdadError = document.getElementById('confirmoMayorEdadError');
+const confirmoPoliticaError = document.getElementById('confirmoPoliticaError');
+
+// Reiniciar los estilos y mensajes de error
+tratamientoDatosCheckbox.classList.remove('error-border');
+aceptoTerminosCheckbox.classList.remove('error-border');
+confirmoMayorEdadCheckbox.classList.remove('error-border');
+confirmoPoliticaCheckbox.classList.remove('error-border');
+
+tratamientoDatosError.innerText = "";
+aceptoTerminosError.innerText = "";
+confirmoMayorEdadError.innerText = "";
+confirmoPoliticaError.innerText = "";
+
+// Validar los checkbox
+if (!tratamientoDatosCheckbox.checked) {
+    tratamientoDatosCheckbox.classList.add('error-border');
+    tratamientoDatosError.innerText = "Debe autorizar el tratamiento de datos personales.";
+    isValid = false;
+}
+
+if (!aceptoTerminosCheckbox.checked) {
+    aceptoTerminosCheckbox.classList.add('error-border');
+    aceptoTerminosError.innerText = "Debe aceptar los términos y condiciones.";
+    isValid = false;
+}
+
+if (!confirmoMayorEdadCheckbox.checked) {
+    confirmoMayorEdadCheckbox.classList.add('error-border');
+    confirmoMayorEdadError.innerText = "Debe confirmar que es mayor de edad.";
+    isValid = false;
+}
+
+if (!confirmoPoliticaCheckbox.checked) {
+    confirmoPoliticaCheckbox.classList.add('error-border');
+    confirmoPoliticaError.innerText = "Debe confirmar la política de tratamiento de datos.";
+    isValid = false;
+}
+
+
     tipopersona.classList.remove('error-border');
     razon.classList.remove('error-border');
     nombre.classList.remove('error-border');

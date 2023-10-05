@@ -17,14 +17,11 @@ return new class extends Migration
             $table->enum('tipo_solicitud', ['Primera Vez', 'Renovación']);
             $table->date('fecha_de_instalacion');
             $table->integer('numero_de_elementos');
-            $table->integer('Alto');
-            $table->integer('Ancho');
-            $table->integer('Area_Total');
             $table->unsignedBigInteger('persona_id');
             $table->string('fotomontaje');
             $table->string('Camara_de_comercio');
             $table->string('Carta_escrita_de_solicitud');
-            $table->string('permiso_anterior');
+            $table->string('permiso_anterior')->nullable();
             $table->foreign('persona_id')->references('id')->on('solicitudes');
             $table->timestamps();
         });

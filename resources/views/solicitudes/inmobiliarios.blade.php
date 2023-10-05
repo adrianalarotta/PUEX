@@ -103,121 +103,83 @@
   </div>
 </div>
 
+
+
 <div class="row" style="padding-left:9.5% ;">
   <div class="checkbox-seleccion-govco m-2">
     <input id="opt1" name="opt1" type="checkbox" />
-    <label for="opt1">Vallas proyectos inmobiliarios</label>
-  </div>
-  <div class="row" style="padding-left:2% ;">
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Número de elementos*</label>
-        <input class="form-control" type="number" name="numero_de_elemento_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
-      </div>
-    </div>
-
-  </div>
-  <div class="row" style="padding-left:2% ;">
-   
-
-    <div class="col-sm-2">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Alto(m)*</label>
-        <input class="form-control" type="number" name="Alto_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
-      </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Ancho(m)*</label>
-        <input type="number" class="form-control" id="razon-social-id" name="Ancho_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
-      </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Área total(mts^2):</label>
-        <input class="form-control" type="text" name="Area_total_valla" placeholder="Ejemplo: Campo de texto" readonly />
-      </div>
-    </div>
+    <label for="opt1"  nombre="Vallas proyectos inmobiliarios">Vallas proyectos inmobiliarios</label>
   </div>
 </div>
-
+  <div class="row" style="padding-left:10.5%;">
+    <div class="col-sm-3" style=" padding-top:1%;" id="numvehiculos">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Numero de elementos*</label>
+        <input class="form-control" type="number"  min="1" id="numero_de_elementos" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
+      </div>
+    </div>
+    <div class="col-sm-3" style="padding-left:1%; padding-top:3.5%;" id="numvehiculos">
+      <button type="button" class="btn-govco outline-btn-govco"  onclick="generarFilas()">Generar Campos</button>
+      </div>
+    </div>
+    <div class="col-sm-10" style="padding-left:3%;" id="numvehiculos">
+      <div id="contenedor_filas"></div>
+    </div>
+     
+    
 <div class="row" style="padding-left:9.5% ;">
   <div class="checkbox-seleccion-govco m-2">
     <input id="opt2" name="opt2" type="checkbox" />
-    <label for="opt2">Avisos de identificación proyectos inmobiliarios</label>
-  </div>
-  <div class="row" style="padding-left:2% ;">
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Número de elementos*</label>
-        <input class="form-control" type="number" name="numero_de_elementos_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
-      </div>
-    </div>
-
-    <div class="col-sm-2">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Alto(m)*</label>
-        <input class="form-control" type="number" name="Alto_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
-      </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Ancho(m)*</label>
-        <input type="number" class="form-control" id="razon-social-id" name="Ancho_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
-      </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Área total(mts^2):</label>
-        <input class="form-control" type="text" name="Area_Total_aviso" placeholder="Ejemplo: Campo de texto" readonly />
-      </div>
-    </div>
+    <label for="opt2" nombre="Avisos de identificación proyectos inmobiliarios">Avisos de identificación proyectos inmobiliarios</label>
   </div>
 </div>
-
+  <div class="row" style="padding-left:10.5%;">
+    <div class="col-sm-3" style=" padding-top:1%;" id="numvehiculos">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Numero de elementos*</label>
+        <input class="form-control" type="number"  min="1" id="numero_de_elementos_aviso" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
+      </div>
+    </div>
+    <div class="col-sm-3" style="padding-left:1%; padding-top:3.5%;" id="numvehiculos">
+      <button type="button" class="btn-govco outline-btn-govco"  onclick="generarFilas_aviso()">Generar Campos</button>
+      </div>
+    </div>
+    <div class="col-sm-10" style="padding-left:3%;" id="numvehiculos">
+      <div id="contenedor_filas_aviso"></div>
+    </div>
+     
+    
 <div class="row" style="padding-left:9.5% ;">
   <div class="checkbox-seleccion-govco m-2">
     <input id="opt3" name="opt3" type="checkbox" />
-    <label for="opt3">Publicidad en encerramiento de proyectos inmobiliarios</label>
-  </div>
-  <div class="row" style="padding-left:2% ;">
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Número de elementos*</label>
-        <input class="form-control" type="number" name="numero_de_encerramiento" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_encerramiento', 'Ancho_encerramiento', 'Alto_encerramiento')" />
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Alto(m)*</label>
-        <input class="form-control" type="number" name="Alto_encerramiento" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_encerramiento', 'Ancho_encerramiento', 'Alto_encerramiento')" />
-      </div>
-    </div>
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Ancho(m)*</label>
-        <input type="number" class="form-control" name="Ancho_encerramiento" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_encerramiento', 'Ancho_encerramiento', 'Alto_encerramiento')" />
-      </div>
-    </div>
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Área total(mts^2):</label>
-        <input class="form-control" type="text" name="Area_Total_encerramiento" placeholder="Ejemplo: Campo de texto" readonly />
-      </div>
-    </div>
+    <label for="opt3" nombre="Publicidad en encerramiento de proyectos inmobiliarios">Publicidad en encerramiento de proyectos inmobiliarios</label>
   </div>
 </div>
+
+<div class="row" style="padding-left:10.5%;">
+  <div class="col-sm-3" style=" padding-top:1%;">
+    <div class="entradas-de-texto-govco">
+      <label for="razon-social-id">Numero de elementos*</label>
+      <input class="form-control" type="number"  min="1" id="numero_de_elementos_encerramiento" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
+    </div>
+  </div>
+  <div class="col-sm-3" style="padding-left:1%; padding-top:3.5%;">
+    <button type="button" class="btn-govco outline-btn-govco" onclick="generarFilas_encerramientos()">Generar Campos</button>
+    </div>
+  </div>
+  <div class="col-sm-10" style="padding-left:3%;" id="numvehiculos">
+    <div id="contenedor_filas_encerramiento"></div>
+  </div>
+   
 
 <div class="row" style="padding-left:9.5% ;">
   <div class="checkbox-seleccion-govco m-2">
     <input id="opt4" name="opt4" type="checkbox" />
     <label for="opt4">Otros</label>
   </div>
-  <div class="row">
+</div>
+
+  <div class="row" style="padding-left:9.5% ;">
     <div class="col-sm-6 col-md-4 col-lg col-xl" style="padding-left:2%">
       <div class="entradas-de-texto-govco">
         <label for="telefono-id">Cuales:</label>
@@ -225,45 +187,23 @@
       </div>
     </div>
   </div>
-  <div class="row" style="padding-left:2% ;">
-    <div class="col-sm-2" style="padding-left:1%;" id="numvehiculos">
+  <div class="row" style="padding-left:10.5%;">
+    <div class="col-sm-3" style=" padding-top:1%;">
       <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Número de elementos*</label>
-        <input class="form-control" type="number" name="numero_de_elementos_otro" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_otro', 'Ancho_otro', 'Largo_otro')" />
+        <label for="razon-social-id">Numero de elementos*</label>
+        <input class="form-control" type="number"  min="1" id="numero_de_elementos_otros" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
       </div>
     </div>
-
-    <div class="col-sm-2">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Largo(m)*</label>
-        <input class="form-control" type="number" name="Largo_otro" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_otro', 'Ancho_otro', 'Largo_otro')" />
+    <div class="col-sm-3" style="padding-left:1%; padding-top:3.5%;">
+      <button type="button" class="btn-govco outline-btn-govco" onclick="generarFilas_otros()">Generar Campos</button>
       </div>
     </div>
-
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Ancho(m)*</label>
-        <input type="number" class="form-control" name="Ancho_otro" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total_otro', 'Ancho_otro', 'Largo_otro')" />
-      </div>
+    <div class="col-sm-10" style="padding-left:3%;" id="numvehiculos">
+      <div id="contenedor_filas_otros"></div>
     </div>
+  
 
-    <div class="col-sm-2" style="padding-left:1%;">
-      <div class="entradas-de-texto-govco">
-        <label for="razon-social-id">Área total(mts^2):</label>
-        <input class="form-control" type="text" name="Area_Total_otro" placeholder="Ejemplo: Campo de texto" readonly />
-      </div>
-    </div>
-  </div>
-</div>
 
-<script>
-  function calcularAreaTotal(areaId, largoId, anchoId) {
-    const largo = parseFloat(document.getElementsByName(largoId)[0].value);
-    const ancho = parseFloat(document.getElementsByName(anchoId)[0].value);
-    const areaTotal = largo * ancho;
-    document.getElementsByName(areaId)[0].value = areaTotal.toFixed(2);
-  }
-</script>
 
   <div class="image-icon">
     <div class="col-md-9 mr-auto" style="padding-left:8.5%">
@@ -481,10 +421,12 @@
     </div>
     
   </form>
-<script>
+
+  <script>
+
 
     function mostrartiposolicitud() {
-
+  
       var x = document.getElementById("tipo_solicitud").value;
       if (x == "Renovacion") {
         document.getElementById("resolucionanterior1").style.display = "block";
@@ -492,85 +434,266 @@
         document.getElementById("resolucionanterior1").style.display = "none";
       }
     }
-</script>
+  
+    function calcularAreaTotal(areaId, largoId, anchoId) {
+      const largo = parseFloat(document.getElementsByName(largoId)[0].value);
+      const ancho = parseFloat(document.getElementsByName(anchoId)[0].value);
+      const areaTotal = largo * ancho;
+      document.getElementsByName(areaId)[0].value = areaTotal.toFixed(2);
+    }
+  
+        
+    function generarFilas_aviso() {
+      var numeroFilas = parseInt(document.getElementById('numero_de_elementos_aviso').value);
+      var contenedorFilas = document.getElementById('contenedor_filas_aviso');
+      contenedorFilas.innerHTML = '';
+  
+      for (var i = 0; i < numeroFilas; i++) {
+        var fila = document.createElement('div');
+        fila.className = 'row';
+        fila.style.paddingLeft = '9%';
+        fila.innerHTML = `
+          <div class="col-sm-2" >
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id"><br>Ancho*</label>
+              <input class="form-control" type="number" name="ancho[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Alto*</label>
+              <input class="form-control" type="number" name="alto[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Área total:</label>
+              <input class="form-control" type="text" name="area_total[]" readonly>
+            </div>
+          </div>
+        `;
+  
+        contenedorFilas.appendChild(fila);
+      }
+    }
+  
+    function calcularAreaTotale(input) {
+      var fila = input.parentNode.parentNode.parentNode;
+      var ancho = parseFloat(fila.querySelector('input[name="ancho[]"]').value) || 0;
+      var alto = parseFloat(fila.querySelector('input[name="alto[]"]').value) || 0;
+      var areaTotal = ancho * alto;
+      fila.querySelector('input[name="area_total[]"]').value = areaTotal.toFixed(2);
+    }
+    
+    function generarFilas() {
+      var numeroFilas = parseInt(document.getElementById('numero_de_elementos').value);
+      var contenedorFilas = document.getElementById('contenedor_filas');
+      contenedorFilas.innerHTML = '';
+  
+      for (var i = 0; i < numeroFilas; i++) {
+        var fila = document.createElement('div');
+        fila.className = 'row';
+        fila.style.paddingLeft = '9%';
+        fila.innerHTML = `
+          <div class="col-sm-2" >
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id"><br>Ancho*</label>
+              <input class="form-control" type="number" name="ancho[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Alto*</label>
+              <input class="form-control" type="number" name="alto[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Área total:</label>
+              <input class="form-control" type="text" name="area_total[]" readonly>
+            </div>
+          </div>
+        `;
+  
+        contenedorFilas.appendChild(fila);
+      }
+    }
+  
+    function generarFilas_encerramientos() {      
+        let numeroFilas = parseInt(document.getElementById('numero_de_elementos_encerramiento').value);
+        let contenedorFilas = document.getElementById('contenedor_filas_encerramiento');
+       
+        contenedorFilas.innerHTML = '';
+        console.log(numeroFilas,contenedorFilas)
+    
+        
+          for (var i=0 ; i<numeroFilas; i++) {
+
+          var fila = document.createElement('div');
+          fila.className = 'row';
+          fila.style.paddingLeft = '9%';
+          fila.innerHTML = `
+            <div class="col-sm-2" >
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id"><br>Ancho*</label>
+                <input class="form-control" type="number" name="ancho[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Alto*</label>
+                <input class="form-control" type="number" name="alto[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Área total:</label>
+                <input class="form-control" type="text" name="area_total[]" readonly>
+              </div>
+            </div>
+          `;
+    
+          contenedorFilas.appendChild(fila);
+        }
+      }
+    
+
+      function generarFilas_otros() {      
+        let numeroFilas = parseInt(document.getElementById('numero_de_elementos_otros').value);
+        let contenedorFilas = document.getElementById('contenedor_filas_otros');
+       
+        contenedorFilas.innerHTML = '';
+        
+          for (var i=0 ; i<numeroFilas; i++) {
+
+          var fila = document.createElement('div');
+          fila.className = 'row';
+          fila.style.paddingLeft = '9%';
+          fila.innerHTML = `
+            <div class="col-sm-2" >
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id"><br>Ancho*</label>
+                <input class="form-control" type="number" name="ancho[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Alto*</label>
+                <input class="form-control" type="number" name="alto[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Área total:</label>
+                <input class="form-control" type="text" name="area_total[]" readonly>
+              </div>
+            </div>
+          `;
+    
+          contenedorFilas.appendChild(fila);
+        }
+      }
+    
+      function calcularAreaTotale(input) {
+        var fila = input.parentNode.parentNode.parentNode;
+        var ancho = parseFloat(fila.querySelector('input[name="ancho[]"]').value) || 0;
+        var alto = parseFloat(fila.querySelector('input[name="alto[]"]').value) || 0;
+        var areaTotal = ancho * alto;
+        fila.querySelector('input[name="area_total[]"]').value = areaTotal.toFixed(2);
+      }
+    
+  
+    function calcularAreaTotale(input) {
+      var fila = input.parentNode.parentNode.parentNode;
+      var ancho = parseFloat(fila.querySelector('input[name="ancho[]"]').value) || 0;
+      var alto = parseFloat(fila.querySelector('input[name="alto[]"]').value) || 0;
+      var areaTotal = ancho * alto;
+      fila.querySelector('input[name="area_total[]"]').value = areaTotal.toFixed(2);
+    }
+    
+  
+    
+      document.getElementById('submitButton').addEventListener('click', function(e) {
+          e.preventDefault(); // Evita enviar el formulario al hacer clic
+          
+          
+         var direccion2 = document.getElementById('direccion2');
+          var Ancho_predio = document.getElementById('Ancho_predio');
+          var Largo_predio = document.getElementById('Largo_predio');
+          var Licencia_de_construcion = document.getElementById('Licencia_de_construcion');
+         
+          var direccion2Error = document.getElementById('direccion2Error');
+          var Ancho_predioError = document.getElementById('Ancho_predioError');
+          var Largo_predioError = document.getElementById('Largo_predioError');
+          var Licencia_de_construcionError = document.getElementById('Licencia_de_construcionError');
+  
+          console.log(direccion2)
+  
+          direccion2.classList.remove('error-border');
+          Ancho_predio.classList.remove('error-border');
+          Largo_predio.classList.remove('error-border');
+          Licencia_de_construcion.classList.remove('error-border');
+         
+          Ancho_predioError.innerText = "";
+          Largo_predioError.innerText = "";
+          direccion2Error.innerText = "";
+          Licencia_de_construcionError.innerText = "";
+          
+       
+  
+  
+  
+          var isValid = true;
+  
+           
+          
+  
+          if (direccion2.value === "") {
+              direccion2.classList.add('error-border');
+              direccion2Error.innerText = "Este campo es requerido.";
+              isValid = false;
+          }
+  
+          if (Ancho_predio.value === "") {
+            Ancho_predio.classList.add('error-border');
+            Ancho_predioError.innerText = "Este campo es requerido.";
+              isValid = false;
+          }
+  
+  
+          if (Largo_predio.value === "") {
+            Largo_predio.classList.add('error-border');
+            Largo_predioError.innerText = "Este campo es requerido.";
+              isValid = false;
+          }
+  
+          console.log(Licencia_de_construcion.value)
+          if (Licencia_de_construcion.value === "") {
+            Licencia_de_construcion.classList.add('error-border');
+            Licencia_de_construcionError.innerText = "Por favor, adjunte un archivo. \n";
+              isValid = false;
+          }
+  
+  
+        
+  
+          if (isValid) {
+              // Si todos los campos son válidos, enviar el formulario
+              document.getElementById('myForm').submit();
+          }
+      }
+      );
+      </script>
+  
+
 
 <x-layouts.validaciondatosbasicos>
 </x-layouts.validaciondatosbasicos>
 
-<script>
-  
-  
-    document.getElementById('submitButton').addEventListener('click', function(e) {
-        e.preventDefault(); // Evita enviar el formulario al hacer clic
-        
-        
-       var direccion2 = document.getElementById('direccion2');
-        var Ancho_predio = document.getElementById('Ancho_predio');
-        var Largo_predio = document.getElementById('Largo_predio');
-        var Licencia_de_construcion = document.getElementById('Licencia_de_construcion');
-       
-        var direccion2Error = document.getElementById('direccion2Error');
-        var Ancho_predioError = document.getElementById('Ancho_predioError');
-        var Largo_predioError = document.getElementById('Largo_predioError');
-        var Licencia_de_construcionError = document.getElementById('Licencia_de_construcionError');
-
-        console.log(direccion2)
-
-        direccion2.classList.remove('error-border');
-        Ancho_predio.classList.remove('error-border');
-        Largo_predio.classList.remove('error-border');
-        Licencia_de_construcion.classList.remove('error-border');
-       
-        Ancho_predioError.innerText = "";
-        Largo_predioError.innerText = "";
-        direccion2Error.innerText = "";
-        Licencia_de_construcionError.innerText = "";
-        
-     
 
 
 
-        var isValid = true;
 
-         
-        
-
-        if (direccion2.value === "") {
-            direccion2.classList.add('error-border');
-            direccion2Error.innerText = "Este campo es requerido.";
-            isValid = false;
-        }
-
-        if (Ancho_predio.value === "") {
-          Ancho_predio.classList.add('error-border');
-          Ancho_predioError.innerText = "Este campo es requerido.";
-            isValid = false;
-        }
-
-
-        if (Largo_predio.value === "") {
-          Largo_predio.classList.add('error-border');
-          Largo_predioError.innerText = "Este campo es requerido.";
-            isValid = false;
-        }
-
-        console.log(Licencia_de_construcion.value)
-        if (Licencia_de_construcion.value === "") {
-          Licencia_de_construcion.classList.add('error-border');
-          Licencia_de_construcionError.innerText = "Por favor, adjunte un archivo. \n";
-            isValid = false;
-        }
-
-
-      
-
-        if (isValid) {
-            // Si todos los campos son válidos, enviar el formulario
-            document.getElementById('myForm').submit();
-        }
-    }
-    );
-    </script>
 
 
 </x-layouts.app>

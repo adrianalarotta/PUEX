@@ -49,19 +49,26 @@ function mostrarRazonSocial() {
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg col-xl mt-4" style="padding-left:10%">
-        <label for="" class="">Modalidad de publicidad<span aria-required="true">*</span></label>
-          <select class="form-control" id="modalidadpublicidad" onchange="modalidadpublicidad()">
-            <option disabled selected>Seleccione</option>
-            <option value="movil">Publicidad Móvil</option>
-            <option value="vallas">Vallas</option>
-            <option value="Avisos y pendones">Avisos y Pendones</option>
-            <option value="Murales">Murales Artisticos en Propiedad Privada</option>
-            <option value="Pasacalles">Pasacalles Para Entidades Publicas</option>
-            <option value="aerea">Publicidad Aerea</option>
-          </select>
-        </div>
+  <div class="col-sm-5 col-md-4 col-lg col-xl mt-4" style="padding-left:10%">
+      <label for="modalidadpublicidad">Modalidad de publicidad<span aria-required="true">*</span></label>
+      <select class="form-control" id="modalidadpublicidad" onchange="modalidadpublicidad()">
+          <option disabled selected>Seleccione</option>
+          <option value="movil">Publicidad Móvil</option>
+          <option value="vallas">Vallas</option>
+          <option value="Avisos y pendones">Avisos y Pendones</option>
+          <option value="Murales">Murales Artísticos en Propiedad Privada</option>
+          <option value="Pasacalles">Pasacalles Para Entidades Públicas</option>
+          <option value="aerea">Publicidad Aérea</option>
+      </select>
+  </div>
+  <div class="col-sm-6 col-md-4 col-lg col-xl mt-4">
+      <p class="mt-3">
+          ¿No está seguro a cuál modalidad pertenece su solicitud?    
+          <a href="{{ route('solicitudes.definiciones') }}">Haga clic aquí</a>
+      </p>
+  </div>
 </div>
+
 
 <div class="row" id="submodalidadpublicidad" style="display:none">
     <div class="col-sm-6 col-md-4 col-lg col-xl mt-4" style="padding-left:10%">

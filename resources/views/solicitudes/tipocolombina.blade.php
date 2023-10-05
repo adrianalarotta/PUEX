@@ -71,41 +71,28 @@
                 </div>
                 <p class="error" id="direccion2Error"></p>
             </div>
-            <div class="col-sm-3" style="padding-left:3%;" id="numvehiculos">
-                <div class="entradas-de-texto-govco">
+              <div class="row" style="padding-left:10%;">
+                <div class="col-sm-3" style=" padding-top:1%;" id="numvehiculos">
+                  <div class="entradas-de-texto-govco">
                     <label for="razon-social-id">Numero de elementos*</label>
-                    <input class=form-control type="number" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
+                    <input class="form-control" type="number"  min="1" id="numero_de_elementos" name="numero_de_elementos" placeholder="Ejemplo: Campo de texto" />
+                  </div>
                 </div>
-            </div>
+                <div class="col-sm-3" style="padding-left:1%; padding-top:3.5%;" id="numvehiculos">
+                  <button type="button" class="btn-govco outline-btn-govco"  onclick="generarFilas()">Generar Campos</button>
+                  </div>
+                </div>
 
         </div>
+
+        
+          <div class="col-sm-10" style="padding-left:3%;" id="numvehiculos">
+            <div id="contenedor_filas"></div>
+          </div>
 
 
         <div class="row">
-    <div class="col-sm-3" style="padding-left:10%">
-        <div class="entradas-de-texto-govco">
-            <label for="razon-social-id">Ancho(m)*</label>
-            <input class="form-control" id="Ancho" name="Ancho" type="number" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
-            <p class="error" id="AnchoError"></p>
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:3%;">
-        <div class="entradas-de-texto-govco">
-            <label for="razon-social-id">Alto(mts^2):</label>
-            <input type="number" id="Alto" name="Alto" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_Total', 'Ancho', 'Alto')" />
-            <p class="error" id="AltoError"></p>
-        </div>
-    </div>
-
-    <div class="col-sm-2" style="padding-left:3%;">
-        <div class="entradas-de-texto-govco">
-            <label for="razon-social-id">Area total(mts^2):</label>
-            <input type="text" name="Area_Total" placeholder="Ejemplo: Campo de texto" readonly />
-        </div>
-    </div>
-</div>
-
+    
 <script>
     function calcularAreaTotal(areaId, anchoId, altoId) {
         const ancho = parseFloat(document.getElementsByName(anchoId)[0].value);
@@ -113,6 +100,14 @@
         const areaTotal = ancho * alto;
         document.getElementsByName(areaId)[0].value = areaTotal.toFixed(2);
     }
+
+    function calcularAreaTotale(input) {
+        var fila = input.parentNode.parentNode.parentNode;
+        var ancho = parseFloat(fila.querySelector('input[name="ancho[]"]').value) || 0;
+        var alto = parseFloat(fila.querySelector('input[name="alto[]"]').value) || 0;
+        var areaTotal = ancho * alto;
+        fila.querySelector('input[name="area_total[]"]').value = areaTotal.toFixed(2);
+      }
 </script>
 
         
@@ -287,6 +282,40 @@
     </x-layouts.validaciondatosbasicos>
 
     <script>
+
+function generarFilas() {
+      var numeroFilas = parseInt(document.getElementById('numero_de_elementos').value);
+      var contenedorFilas = document.getElementById('contenedor_filas');
+      contenedorFilas.innerHTML = '';
+  
+      for (var i = 0; i < numeroFilas; i++) {
+        var fila = document.createElement('div');
+        fila.className = 'row';
+        fila.style.paddingLeft = '9%';
+        fila.innerHTML = `
+          <div class="col-sm-2" >
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id"><br>Ancho*</label>
+              <input class="form-control" type="number" name="ancho[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Alto*</label>
+              <input class="form-control" type="number" name="alto[]" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotale(this)">
+            </div>
+          </div>
+          <div class="col-sm-2" style="padding-left:1%; padding-top:2%;">
+            <div class="entradas-de-texto-govco">
+              <label for="razon-social-id">Área total:</label>
+              <input class="form-control" type="text" name="area_total[]" readonly>
+            </div>
+          </div>
+        `;
+  
+        contenedorFilas.appendChild(fila);
+      }
+    }
     document.getElementById('submitButton').addEventListener('click', function(e) {
         e.preventDefault(); // Evita enviar el formulario al hacer clic
 

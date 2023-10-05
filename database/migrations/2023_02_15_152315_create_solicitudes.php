@@ -16,17 +16,16 @@ return new class extends Migration
             $table->string('nombre')->required();
             $table->string('apellido');
             $table->enum('tipo_documento', ['cedula', 'cedula de extrangeria','NIT']);
-            $table->string('numero_documento');
+            $table->string('numero_documento',20);
             $table->enum('tipo_persona', ['natural', 'juridica']);
             $table->string('Razon_Social_Responsable')->nullable();
             $table->string('telefono', 20);
             $table->string('correo_electronico');
             $table->string('direccion');
-            // otros campos comunes
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */

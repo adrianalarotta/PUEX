@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('Certificado_de_libertad');
             $table->string('Autorizacion');
             $table->string('Carta_escrita_de_solicitud');
-            $table->string('permiso_anterior');
+            $table->string('permiso_anterior')->nullable();
             $table->foreign('persona_id')->references('id')->on('solicitudes');
             $table->timestamps();
         });

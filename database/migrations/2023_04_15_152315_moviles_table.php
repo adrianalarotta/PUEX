@@ -23,7 +23,7 @@ return new class extends Migration
                 $table->string('RUT');
                 $table->string('Tarjeta_de_propiedad');
                 $table->string('Carta_escrita_de_solicitud');
-                $table->string('permiso_anterior');
+                $table->string('permiso_anterior')->nullable();
                 $table->foreign('persona_id')->references('id')->on('solicitudes');
                 $table->timestamps();
             });

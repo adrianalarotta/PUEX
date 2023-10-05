@@ -322,3 +322,145 @@
   </script>
 
 </x-layouts.app>
+
+
+
+
+
+
+
+
+
+
+<div class="row" style="padding-left:9.5%;">
+  <div class="checkbox-seleccion-govco m-2">
+    <input id="opt1" name="opt1" type="checkbox" />
+    <label for="opt1">Vallas proyectos inmobiliarios</label>
+  </div>
+  <div class="row" style="padding-left:2%;">
+    <div class="col-sm-2" style="padding-left:1%;">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Número de elementos*</label>
+        <input class="form-control" type="number" name="numero_de_elemento_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
+      </div>
+    </div>
+    <div class="col-sm-2" style="padding-left:1%;">
+      <button type="button" class="btn-govco outline-btn-govco" onclick="generarCampos('valla')">Generar Campos</button>
+    </div>
+  </div>
+  <div class="row" style="padding-left:2%;">
+    <div class="col-sm-2">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Alto(m)*</label>
+        <input class="form-control" type="number" name="Alto_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
+      </div>
+    </div>
+    <div class="col-sm-2" style="padding-left:1%;">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Ancho(m)*</label>
+        <input type="number" class="form-control" name="Ancho_valla" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_valla', 'Ancho_valla', 'Alto_valla')" />
+      </div>
+    </div>
+    <div class="col-sm-2" style="padding-left:1%;">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Área total(mts^2):</label>
+        <input class="form-control" type="text" name="Area_total_valla" placeholder="Ejemplo: Campo de texto" readonly />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="padding-left:9.5%;">
+  <div class="checkbox-seleccion-govco m-2">
+    <input id="opt2" name="opt2" type="checkbox" />
+    <label for="opt2">Avisos de identificación proyectos inmobiliarios</label>
+  </div>
+  <div class="row" style="padding-left:2%;">
+    <div class="col-sm-2" style="padding-left:1%;">
+      <div class="entradas-de-texto-govco">
+        <label for="razon-social-id">Número de elementos*</label>
+        <input class="form-control" type="number" name="numero_de_elementos_aviso" placeholder="E.
+        <div class="row" style="padding-left:9.5%;">
+          <div class="checkbox-seleccion-govco m-2">
+            <input id="opt2" name="opt2" type="checkbox" />
+            <label for="opt2">Avisos de identificación proyectos inmobiliarios</label>
+          </div>
+          <div class="row" style="padding-left:2%;">
+            <div class="col-sm-2" style="padding-left:1%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Número de elementos*</label>
+                <input class="form-control" type="number" name="numero_de_elementos_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%;">
+              <button type="button" class="btn-govco outline-btn-govco" onclick="generarCampos('aviso')">Generar Campos</button>
+            </div>
+          </div>
+          <div class="row" style="padding-left:2%;">
+            <div class="col-sm-2">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Alto(m)*</label>
+                <input class="form-control" type="number" name="Alto_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Ancho(m)*</label>
+                <input type="number" class="form-control" name="Ancho_aviso" placeholder="Ejemplo: Campo de texto" oninput="calcularAreaTotal('Area_total_aviso', 'Ancho_aviso', 'Alto_aviso')" />
+              </div>
+            </div>
+            <div class="col-sm-2" style="padding-left:1%;">
+              <div class="entradas-de-texto-govco">
+                <label for="razon-social-id">Área total(mts^2):</label>
+                <input class="form-control" type="text" name="Area_total_aviso" placeholder="Ejemplo: Campo de texto" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <script>
+          function generarCampos(tipo) {
+            var numeroElementos = parseInt(document.getElementsByName("numero_de_elemento_" + tipo)[0].value);
+            var camposContainer = document.getElementById(tipo + "_campos_container");
+            
+            // Eliminar los campos existentes
+            while (camposContainer.firstChild) {
+              camposContainer.firstChild.remove();
+            }
+            
+            // Generar nuevos campos según el número de elementos
+            for (var i = 1; i <= numeroElementos; i++) {
+              var campo = document.createElement("div");
+              campo.className = "col-sm-2";
+              campo.style.paddingLeft = "1%";
+              
+              var entradaTexto = document.createElement("div");
+              entradaTexto.className = "entradas-de-texto-govco";
+              
+              var label = document.createElement("label");
+              label.setAttribute("for", tipo + "_campo_" + i);
+              label.innerHTML = "Campo " + i + ":";
+              
+              var input = document.createElement("input");
+              input.className = "form-control";
+              input.setAttribute("type", "text");
+              input.setAttribute("name", tipo + "_campo_" + i);
+              input.setAttribute("placeholder", "Ejemplo: Campo de texto");
+              
+              entradaTexto.appendChild(label);
+              entradaTexto.appendChild(input);
+              campo.appendChild(entradaTexto);
+              
+              camposContainer.appendChild(campo);
+            }
+          }
+          
+          function calcularAreaTotal(target, widthInput, heightInput) {
+            var width = parseFloat(document.getElementsByName(widthInput)[0].value);
+            var height = parseFloat(document.getElementsByName(heightInput)[0].value);
+            var area = width * height;
+            
+            document.getElementsByName(target)[0].value = area.toFixed(2);
+          }
+        </script>
+        

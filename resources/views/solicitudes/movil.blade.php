@@ -118,6 +118,8 @@
             var areaTotal = lateralIzquierdo + lateralDerecho + posterior;
             fila.querySelector('input[name="area_total[]"]').value = areaTotal.toFixed(2);
         }
+
+        
     </script>
     
     </div>
